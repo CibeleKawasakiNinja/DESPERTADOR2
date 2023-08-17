@@ -1,0 +1,45 @@
+//indicar o tipo de documento //
+<!DOCTYPE html>
+//indicar o idioma//
+<html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Despertador</title>
+        </head>
+        <body>
+          <h1>Despertador</h1>
+          <label for="alarmTime">Hora do Alarme:</label>
+          <input type="time" id="alarmTime">
+          <button onclick="setAlarm()">Definir Alarme</button>
+        
+          <script>
+           //A função setAlarm() é responsável por definir o alarme com base no horário inserido pelo usuário e ativar o alarme quando o horário definido for alcançado//
+           function setAlarm() {
+           // Isso nos permite acessar o valor de hora inserido pelo usuário.//
+              const alarmTimeInput = document.getElementById('alarmTime');
+          //Isso nos dá a hora que o usuário deseja definir para o alarme//
+              const alarmTime = alarmTimeInput.value;
+          //Criamos um objeto Date que representa o horário atual//
+              const now = new Date();
+          //Criamos outro objeto Date representando o horário do alarme. Estamos combinando a data atual com a hora inserida pelo usuário.//
+              const alarm = new Date(now.toDateString() + " " + alarmTime);
+         //Calculamos o tempo restante até o alarme, subtraindo o horário atual do horário do alarme. Isso nos dá o intervalo de tempo em milissegundos.//
+              const timeUntilAlarm = alarm - now;
+              
+              if (timeUntilAlarm <= 0 || isNaN(timeUntilAlarm)) {
+                alert('Hora inválida! Por favor, insira uma hora no futuro.');
+                return;
+              }
+              
+              setTimeout(function() {
+                playAlarm();
+              }, timeUntilAlarm);
+            }
+        
+            function playAlarm() {
+              alert('Acorda! É hora de levantar.');
+            }
+          </script>
+        </body>
+        </html>
