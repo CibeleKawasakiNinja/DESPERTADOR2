@@ -26,17 +26,17 @@
               const alarm = new Date(now.toDateString() + " " + alarmTime);
          //Calculamos o tempo restante até o alarme, subtraindo o horário atual do horário do alarme. Isso nos dá o intervalo de tempo em milissegundos.//
               const timeUntilAlarm = alarm - now;
-              
+           //Verificamos se o tempo restante até o alarme é menor ou igual a zero (ou seja, o usuário definiu um horário no passado) ou se não é um valor numérico (caso a entrada do usuário seja inválida).//   
               if (timeUntilAlarm <= 0 || isNaN(timeUntilAlarm)) {
                 alert('Hora inválida! Por favor, insira uma hora no futuro.');
                 return;
               }
-              
+              //Se o tempo restante até o alarme for válido, usamos a função setTimeout para agendar o acionamento do alarme. O alarme será tocado após o tempo especificado em timeUntilAlarm. Quando o tempo do alarme chegar, a função playAlarm() será chamada.//
               setTimeout(function() {
                 playAlarm();
               }, timeUntilAlarm);
             }
-        
+        //basicamente calcula o tempo restante até o horário do alarme, verifica se é um tempo válido e, em seguida, agenda o acionamento do alarme usando setTimeout.//
             function playAlarm() {
               alert('Acorda! É hora de levantar.');
             }
